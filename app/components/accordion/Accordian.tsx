@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useState } from "react";
-import { accordianData } from "./data";
+
 import AccordianItem from "./AccordianItem";
+import { accordianData } from "./data";
 
 const Accordian = () => {
   const [open, setOpen] = useState<any | null>(null);

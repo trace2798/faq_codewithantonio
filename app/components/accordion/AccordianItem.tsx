@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { Collapse } from "react-collapse";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -18,7 +19,7 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
   title,
   description,
   description2,
-  description3
+  description3,
 }) => {
   return (
     <div className="pt-[10px] shadow-md border-b-2 border-indigo-500">
@@ -26,7 +27,9 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
         className="cursor-pointer items-center justify-between flex px-[50px] py-[25px]"
         onClick={toggle}
       >
-        <p className="text-[22px] font-semibold hover:text-blue-700 font-satoshiBold">{title}</p>
+        <p className="text-[22px] font-semibold hover:text-blue-700 font-satoshiBold">
+          {title}
+        </p>
         <div className="text-[30px]">
           {open ? <AiOutlineMinus /> : <AiOutlinePlus />}
         </div>
