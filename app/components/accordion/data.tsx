@@ -10,4 +10,9 @@ export const accordianData = [
     description: `Go to your package,json and then add "postinstall": "prisma generate" to your scripts.`,
     description2: `Previously it was not required.`,
   },
+  {
+    title: `Error [next-auth] message: 'outgoing request timed out after 3500ms`,
+    description: `Probably has to do with internet connection issues nothing with your code.`,
+    description2: `https://github.com/nextauthjs/next-auth/discussions/3186`,
+  },
 ];
