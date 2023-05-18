@@ -7,18 +7,18 @@ interface AccordianItemProps {
   open?: any;
   toggle?: any;
   title: any;
-  name?: any;
-  name2?: any;
-  name3: any;
+  description?: any;
+  description2?: any;
+  description3: any;
 }
 
 const AccordianItem: React.FC<AccordianItemProps> = ({
   open,
   toggle,
   title,
-  name,
-  name2,
-  name3
+  description,
+  description2,
+  description3
 }) => {
   return (
     <div className="pt-[10px] shadow-md border-b-2 border-indigo-500">
@@ -34,9 +34,9 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
 
       <Collapse isOpened={open}>
         <div className="bg-white px-[50px] pb-[20px] mb-6 text-gray-500 sm:text-lg md:mb-8">
-          <p className=" font-ranadeRegular">{name}</p>
-          <p className="mt-2 font-ranadeRegular">{name2}</p>
-          <p className="mt-2 font-ranadeRegular">{name3}</p>
+          <p className=" font-ranadeRegular">{description}</p>
+          <p className="mt-2 font-ranadeRegular">{description2}</p>
+          <p className="mt-2 font-ranadeRegular">{description3}</p>
         </div>
       </Collapse>
     </div>
