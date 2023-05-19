@@ -27,7 +27,7 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
         className="cursor-pointer items-center justify-between flex px-[50px] py-[25px]"
         onClick={toggle}
       >
-        <p className="text-[22px] font-semibold hover:text-blue-700 font-satoshiBold">
+        <p className="text-[22px] font-satoshiMedium hover:text-blue-700 font-satoshiBold">
           {title}
         </p>
         <div className="text-[30px]">

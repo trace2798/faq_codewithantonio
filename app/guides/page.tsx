@@ -32,13 +32,13 @@ export default function GuidesPage() {
               className="group relative rounded-lg border p-6 shadow-md transition-shadow hover:shadow-lg"
             >
               {guide.featured && (
-                <span className="absolute right-4 top-4 rounded-full px-3 py-1 text-xs font-medium">
+                <span className="absolute right-4 top-4 rounded-full px-3 py-1 text-xs font-ranadeRegular">
                   Featured
                 </span>
               )}
               <div className="flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <h2 className="text-xl font-medium tracking-tight">
+                  <h2 className="text-xl font-ranadeRegular tracking-tight">
                     {guide.title}
                   </h2>
                   {guide.description && (

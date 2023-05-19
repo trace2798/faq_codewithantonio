@@ -31,7 +31,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 
   return mounted ? (
     <div className="space-y-2">
-      <p className="font-medium">On This Page</p>
+      <p className="font-ranadeRegular">On This Page</p>
       <Tree tree={toc} activeItem={activeHeading} />
     </div>
   ) : null
@@ -97,7 +97,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               className={cn(
                 "inline-block no-underline",
                 item.url === `#${activeItem}`
-                  ? "font-medium text-primary"
+                  ? "font-ranadeRegular text-primary"
                   : "text-sm text-muted-foreground"
               )}
             >
