@@ -18,7 +18,7 @@ const Accordian = () => {
   return (
     <>
       <div className="flex flex-col lg:flex-row justify-between lg:mx-[8vw]">
-        <div className="inline-flex items-center gap-2">
+        <div className="items-center gap-2">
           <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-2xl lg:text-4xl p-5 font-bold">
             Will keep on updating when time permits.
           </h1>
