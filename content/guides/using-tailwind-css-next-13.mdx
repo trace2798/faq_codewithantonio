@@ -1,97 +1,67 @@
 ---
-title: Using Next-auth with Next.13
-description: How to use next-auth with Next 13 in server components.
+title: Using Tailwind css with Next.13
+description: How to use Tailwind css in NextJs application.
 date: 2022-11-23
 ---
 
 <Callout>
 
-The official website [next-auth](https://next-auth.js.org/) For this article in will go in brief and to the point. For more information check the official website.
+This site is a work in progress. If you see dummy text on a page, it means I'm still working on it. You can follow updates on Twitter [@shadcn](https://twitter.com/shadcn).
 
 </Callout>
 
-## What is next-auth?
+<Callout>
+  The text below is from the [Tailwind
+  CSS](https://play.tailwindcss.com/uj1vGACRJA?layout=preview) docs. I copied it
+  here to test the markdown styles. **Tailwind is awesome. You should use it.**
+</Callout>
 
-It is an [open-source](https://github.com/nextauthjs/next-auth) authentication solution for NextJs application. It is designed to support NextJs and serverless but runs anywhere (AWS Lambda, Docker, Heroku, etc…).
-When you use Next-auth you also have control over the data. It can be used with or without a database.
+Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.
 
-> Note: Email sign-in requires a database to be configured to store single-use verification tokens.
+By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
 
-## What is covered in this article?
+We get lots of complaints about it actually, with people regularly asking us things like:
 
-Using next-auth in a NextJs 13 application with prisma. Since NextJs made the app directory stable and recommended we will be using that. The 2 ways we will use it are
+> Why is Tailwind removing the default styles on my `h1` elements? How do I disable this? What do you mean I lose all the other base styles too?
+> We hear you, but we're not convinced that simply disabling our base styles is what you really want. You don't want to have to remove annoying margins every time you use a `p` element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look _awesome_, not awful.
 
-1.  Using Credentials i.e. email and password.
-2.  Social login with Google and Github.
+The `@tailwindcss/typography` plugin is our attempt to give you what you _actually_ want, without any of the downsides of doing something stupid like disabling our base styles.
 
-## Getting Started
+It adds a new `prose` class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:
 
-To-do before installing next-auth
-
-1. Create a new Next.Js app using
 ```html
-npx create-next-app@latest
+<article class="prose">
+  <h1>Garlic bread with cheese: What the science tells us</h1>
+  <p>
+    For years parents have espoused the health benefits of eating garlic bread
+    with cheese to their children, with the food earning such an iconic status
+    in our culture that kids will often dress up as warm, cheesy loaf for
+    Halloween.
+  </p>
+  <p>
+    But a recent study shows that the celebrated appetizer may be linked to a
+    series of rabies cases springing up around the country.
+  </p>
+</article>
 ```
-2. Setup Prisma and connect it with MongoDb database.
-3. In your schema.prisma file define your User and Account schema
-   > Account schema is required if you plan to use social login.
 
-Example:
-```html
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+For more information about how to use the plugin and the features it includes, [read the documentation](https://github.com/tailwindcss/typography/blob/master/README.md).
 
-generator client {
-  provider = "prisma-client-js"
-}
+---
 
-datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
-}
+## What to expect from here on out
 
-model User {
-  id              String @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?
-  email           String?   @unique
-  emailVerified   DateTime?
-  image           String?
-  hashedPassword  String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  accounts Account[]
-}
+What follows from here is just a bunch of absolute nonsense I've written to dogfood the plugin itself. It includes every sensible typographic element I could think of, like **bold text**, unordered lists, ordered lists, code blocks, block quotes, _and even italics_.
 
-model Account {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String   @db.ObjectId
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.String
-  session_state      String?
+It's important to cover all of these use cases for a few reasons:
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+1.  We want everything to look good out of the box.
+2.  Really just the first reason, that's the whole point of the plugin.
+3.  Here's a third pretend reason though a list with three items looks more realistic than a list with two items.
 
-  @@unique([provider, providerAccountId])
-}
+Now we're going to try out another header style.
 
-```
-Push the schema to the database with the following command:
-```html
-npx prisma db push
-```
-Go and check your MongoDb database if the collections are there.
-
-After that run the following command:
-```html
-npm install next-auth@latest @prisma/client @next-auth/prisma-adapter bcrypt
-```
+### Typography should be easy
 
 So that's a header for you — with any luck if we've done our job correctly that will look pretty reasonable.
 
