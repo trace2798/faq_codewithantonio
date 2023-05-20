@@ -3,18 +3,18 @@ import { ImageResponse } from "@vercel/og";
 
 export const runtime = "edge";
 
-const interRegular = fetch(
+const ranadeRegular = fetch(
   new URL("../../../fonts/Ranade-Regular.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const interBold = fetch(
+const satoshiBold = fetch(
   new URL("../../../fonts/Satoshi-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 export async function GET(req: Request) {
   try {
-    const fontRegular = await interRegular;
-    const fontBold = await interBold;
+    const fontRegular = await ranadeRegular;
+    const fontBold = await satoshiBold; 
 
     const url = new URL(req.url);
     const values = ogImageSchema.parse(Object.fromEntries(url.searchParams));
@@ -70,13 +70,13 @@ export async function GET(req: Request) {
           </svg>
           <div tw="flex flex-col flex-1 py-10">
             <div
-              tw="flex text-xl uppercase font-bold tracking-tight"
+              tw="flex text-xl uppercase font-satoshiBold tracking-tight"
               style={{ fontFamily: "Inter", fontWeight: "normal" }}
             >
               {values.type}
             </div>
             <div
-              tw="flex leading-[1.1] text-[80px] font-bold"
+              tw="flex leading-[1.1] text-[80px] font-satoshiBold"
               style={{
                 fontFamily: "Cal Sans",
                 fontWeight: "bold",
@@ -89,10 +89,10 @@ export async function GET(req: Request) {
           </div>
           <div tw="flex items-center w-full justify-between">
             <div
-              tw="flex text-xl"
+              tw="flex text-xl font-ranadeRegular"
               style={{ fontFamily: "Inter", fontWeight: "normal" }}
             >
-              tx.shadcn.com
+             faq-codewithantonio.vercel.app
             </div>
             <div
               tw="flex items-center text-xl"
@@ -114,7 +114,7 @@ export async function GET(req: Request) {
                   stroke-linejoin="round"
                 />
               </svg>
-              <div tw="flex ml-2">github.com/shadcn/taxonomy</div>
+              <div tw="flex ml-2 font-ranadeRegular">github.com/AntonioErdeljac</div>
             </div>
           </div>
         </div>
