@@ -8,7 +8,9 @@ date: 2022-11-23
 
 Since a lot of people are having problems with next-auth. I am creating this cheat sheet to cover the steps that needs to be taken for successful integration.
 Work in progress.
+
 </Callout>
+
 
 ## What is next-auth?
 
@@ -26,70 +28,43 @@ Using next-auth in a NextJs 13 application with prisma. Since NextJs made the ap
 
 ## Getting Started
 
-To-do before installing next-auth
-
 1. Create a new Next.Js app using
+
 ```html
 npx create-next-app@latest
 ```
+
 2. Setup Prisma and connect it with MongoDb database.
 3. In your schema.prisma file define your User and Account schema
    > Account schema is required if you plan to use social login.
 
 Example:
+
 ```html
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
-}
-
-model User {
-  id              String @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?
-  email           String?   @unique
-  emailVerified   DateTime?
-  image           String?
-  hashedPassword  String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  accounts Account[]
-}
-
-model Account {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String   @db.ObjectId
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.String
-  session_state      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-}
-
+// This is your Prisma schema file, // learn more about it in the docs:
+https://pris.ly/d/prisma-schema generator client { provider = "prisma-client-js"
+} datasource db { provider = "mongodb" url = env("DATABASE_URL") } model User {
+id String @id @default(auto()) @map("_id") @db.ObjectId name String? email
+String? @unique emailVerified DateTime? image String? hashedPassword String?
+createdAt DateTime @default(now()) updatedAt DateTime @updatedAt accounts
+Account[] } model Account { id String @id @default(auto()) @map("_id")
+@db.ObjectId userId String @db.ObjectId type String provider String
+providerAccountId String refresh_token String? @db.String access_token String?
+@db.String expires_at Int? token_type String? scope String? id_token String?
+@db.String session_state String? user User @relation(fields: [userId],
+references: [id], onDelete: Cascade) @@unique([provider, providerAccountId]) }
 ```
+
 Push the schema to the database with the following command:
+
 ```html
 npx prisma db push
 ```
+
 Go and check your MongoDb database if the collections are there.
 
 After that run the following command:
+
 ```html
 npm install next-auth@latest @prisma/client @next-auth/prisma-adapter bcrypt
 ```
-
