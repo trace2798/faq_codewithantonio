@@ -1,16 +1,17 @@
 "use client";
 
 import React from "react";
+import { MouseEventHandler } from "react";
 import { Collapse } from "react-collapse";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 interface AccordianItemProps {
-  open?: any;
-  toggle?: any;
-  title: any;
-  description?: any;
-  description2?: any;
-  description3: any;
+  open?: boolean;
+  toggle?: MouseEventHandler<HTMLDivElement>;
+  title: string;
+  description?: string;
+  description2?: string;
+  description3?: string;
 }
 
 const AccordianItem: React.FC<AccordianItemProps> = ({
@@ -35,7 +36,7 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
         </div>
       </div>
 
-      <Collapse isOpened={open}>
+      <Collapse  isOpened={open || false}>
         <div className="bg-white dark:bg-slate-700 rounded-xl dark:text-neutral-300 px-[50px] pb-[20px] mb-6 text-gray-500 sm:text-lg md:mb-8">
           <p className=" font-ranadeRegular pt-2">{description}</p>
           <p className="mt-2 font-ranadeRegular">{description2}</p>
