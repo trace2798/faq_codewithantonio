@@ -1,7 +1,10 @@
 import { Inter } from "next/font/google";
 
 import ClientOnly from "./components/ClientOnly";
+import Providers from "./components/Providers";
+import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
+
 // import { siteConfig } from "@/config/site";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -66,7 +69,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClientOnly>{children}</ClientOnly>
+        <ClientOnly>
+          <Providers>
+            {/* @ts-expect-error Server Component */}
+            <Navbar />
+            <div className="pt-24">{children}</div>
+          </Providers>
+        </ClientOnly>
       </body>
     </html>
   );
