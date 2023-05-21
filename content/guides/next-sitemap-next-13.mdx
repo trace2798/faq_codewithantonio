@@ -1,0 +1,74 @@
+---
+title: Using next-sitemap with Next.13
+description: How to use next-sitemap with Next.13 (app directory) to generated sitemap.
+date: 2023-05-21
+by: Trace
+---
+
+<Callout>This site is a work in progress.</Callout>
+
+<Callout>
+  Official link for [next-sitemap](https://www.npmjs.com/package/next-sitemap)
+  docs.
+</Callout>
+
+## What does the next-sitemap package do?
+
+It is a sitemap generator for next.js application. It can be used to generate sitemap/sitemaps and robots.txt for all static/pre-rendered/dynamic/server-side pages.
+
+## Step By Step Guide.
+
+In this guide I will walkthrough the steps I took to create a sitemap for this website using 'next-sitemap'.
+
+1. After creating the application, I ran the following command:
+
+```sh npm
+npm install next-sitemap
+```
+
+2. In the root I created a file called "next-sitemap.config.js"
+
+<Image
+  src="/images/guides/sitemapConfig.jpg"
+  width="250"
+  height="250"
+  alt="Image"
+/>
+
+3. Inside that file I added the following code:
+
+```ts
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  siteUrl: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  generateRobotsTxt: true,
+  generateIndexSitemap: false,
+};
+```
+
+<Callout>
+  generateIndexSitemap is false since this is not a big website. Since it is
+  false only one sitemap will be generated.
+</Callout>
+
+4. Then went to package.json and added postbuild command to scripts
+
+```ts
+"postbuild": "next-sitemap"
+```
+
+5. Ran the build command, in my case it is
+
+```ts
+npm run build
+```
+
+6. The sitemap got generated once the build has been successful. Here is a snap of how it looked on mine once the build was successful.
+
+<Image
+  src="/images/guides/postBuild.jpg"
+  width="500"
+  height="250"
+  alt="Image"
+/>
+<Callout>To verify I went to siteUrl/sitemap.xml</Callout>

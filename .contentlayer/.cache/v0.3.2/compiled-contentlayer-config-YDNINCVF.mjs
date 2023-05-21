@@ -49,6 +49,9 @@ var Guide = defineDocumentType(() => ({
       type: "date",
       required: true
     },
+    by: {
+      type: "string"
+    },
     published: {
       type: "boolean",
       default: true
@@ -206,4 +209,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-AG6344CN.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-YDNINCVF.mjs.map

@@ -45,11 +45,16 @@ export default function GuidesPage() {
                     <p className="text-muted-foreground">{guide.description}</p>
                   )}
                 </div>
-                {guide.date && (
-                  <p className="text-sm text-muted-foreground">
-                    {formatDate(guide.date)}
-                  </p>
-                )}
+                <div className="flex justify-between">
+                  {guide.date && (
+                    <p className="text-sm text-muted-foreground">
+                      {formatDate(guide.date)}
+                    </p>
+                  )}
+                  {guide.by && (
+                    <p className="text-sm text-muted-foreground">By: {guide.by}</p>
+                  )}
+                </div>
               </div>
               <Link href={guide.slug} className="absolute inset-0">
                 <span className="sr-only">View</span>

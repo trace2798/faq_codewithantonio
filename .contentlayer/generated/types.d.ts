@@ -61,6 +61,7 @@ export type Guide = {
   title: string
   description?: string | undefined
   date: IsoDateTimeString
+  by?: string | undefined
   published: boolean
   featured: boolean
   /** MDX file body */
