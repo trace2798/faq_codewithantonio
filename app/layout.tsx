@@ -4,6 +4,7 @@ import ClientOnly from "./components/ClientOnly";
 import Providers from "./components/Providers";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
+import Footer from "./components/footer";
 
 // import { siteConfig } from "@/config/site";
 
@@ -73,7 +74,8 @@ export default function RootLayout({
           <Providers>
             {/* @ts-expect-error Server Component */}
             <Navbar />
-            <div className="pt-24">{children}</div>
+            <div className="pt-24 min-h-screen">{children}</div>
+            <Footer/>
           </Providers>
         </ClientOnly>
       </body>
