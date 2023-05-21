@@ -27,7 +27,7 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
         className="cursor-pointer items-center justify-between flex px-[50px] py-[25px]"
         onClick={toggle}
       >
-        <p className="text-[22px] font-satoshiMedium hover:text-blue-700 font-satoshiBold">
+        <p className="text-[22px]  hover:text-blue-700 font-satoshiBold">
           {title}
         </p>
         <div className="text-[30px]">
@@ -36,8 +36,8 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
       </div>
 
       <Collapse isOpened={open}>
-        <div className="bg-white px-[50px] pb-[20px] mb-6 text-gray-500 sm:text-lg md:mb-8">
-          <p className=" font-ranadeRegular">{description}</p>
+        <div className="bg-white dark:bg-slate-700 rounded-xl dark:text-neutral-300 px-[50px] pb-[20px] mb-6 text-gray-500 sm:text-lg md:mb-8">
+          <p className=" font-ranadeRegular pt-2">{description}</p>
           <p className="mt-2 font-ranadeRegular">{description2}</p>
           <p className="mt-2 font-ranadeRegular">{description3}</p>
         </div>

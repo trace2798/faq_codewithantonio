@@ -23,6 +23,22 @@ export type Author = {
   slugAsParams: string
 }
 
+export type CheatSheets = {
+  /** File path relative to `contentDirPath` */
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'CheatSheets'
+  title: string
+  description?: string | undefined
+  date: IsoDateTimeString
+  published: boolean
+  featured: boolean
+  /** MDX file body */
+  body: MDX
+  slug: string
+  slugAsParams: string
+}
+
 export type Doc = {
   /** File path relative to `contentDirPath` */
   _id: string
@@ -91,8 +107,8 @@ export type Post = {
 export type AllTypes = DocumentTypes | NestedTypes
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames
 
-export type DocumentTypes = Author | Doc | Guide | Page | Post
-export type DocumentTypeNames = 'Author' | 'Doc' | 'Guide' | 'Page' | 'Post'
+export type DocumentTypes = Author | CheatSheets | Doc | Guide | Page | Post
+export type DocumentTypeNames = 'Author' | 'CheatSheets' | 'Doc' | 'Guide' | 'Page' | 'Post'
 
 export type NestedTypes = never
 export type NestedTypeNames = never
@@ -104,6 +120,7 @@ export type DataExports = {
   allGuides: Guide[]
   allPosts: Post[]
   allAuthors: Author[]
+  allCheatSheets: CheatSheets[]
 }
 
 
@@ -124,6 +141,7 @@ declare global {
 
 export type DocumentTypeMap = {
   Author: Author
+  CheatSheets: CheatSheets
   Doc: Doc
   Guide: Guide
   Page: Page

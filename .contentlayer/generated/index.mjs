@@ -9,9 +9,10 @@ import { allDocs } from './Doc/_index.mjs'
 import { allGuides } from './Guide/_index.mjs'
 import { allPosts } from './Post/_index.mjs'
 import { allAuthors } from './Author/_index.mjs'
+import { allCheatSheets } from './CheatSheets/_index.mjs'
 
-export { allPages, allDocs, allGuides, allPosts, allAuthors }
+export { allPages, allDocs, allGuides, allPosts, allAuthors, allCheatSheets }
 
-export const allDocuments = [...allPages, ...allDocs, ...allGuides, ...allPosts, ...allAuthors]
+export const allDocuments = [...allPages, ...allDocs, ...allGuides, ...allPosts, ...allAuthors, ...allCheatSheets]
 
 

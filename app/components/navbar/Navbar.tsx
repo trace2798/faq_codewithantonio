@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { ThemeToggle } from "./ThemeToggle";
 import { buttonVariants } from "../ui/Button";
+import SocialIcons from "../ui/SocialIcons";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = async () => {
   return (
@@ -11,11 +12,13 @@ const Navbar = async () => {
           FAQ- CodeWithAntonio
         </Link>
 
-        <div className="md:hidden">
+        <div className="md:hidden flex">
+          <SocialIcons />
           <ThemeToggle />
         </div>
 
         <div className="hidden md:flex gap-4">
+          <SocialIcons />
           <ThemeToggle />
           {/* <Link
             href="/documentation"
