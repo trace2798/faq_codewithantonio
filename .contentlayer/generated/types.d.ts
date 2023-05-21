@@ -39,20 +39,6 @@ export type CheatSheets = {
   slugAsParams: string
 }
 
-export type Doc = {
-  /** File path relative to `contentDirPath` */
-  _id: string
-  _raw: Local.RawDocumentData
-  type: 'Doc'
-  title: string
-  description?: string | undefined
-  published: boolean
-  /** MDX file body */
-  body: MDX
-  slug: string
-  slugAsParams: string
-}
-
 export type Guide = {
   /** File path relative to `contentDirPath` */
   _id: string
@@ -81,23 +67,6 @@ export type Page = {
   body: MDX
   slug: string
   slugAsParams: string
-}
-
-export type Post = {
-  /** File path relative to `contentDirPath` */
-  _id: string
-  _raw: Local.RawDocumentData
-  type: 'Post'
-  title: string
-  description?: string | undefined
-  date: IsoDateTimeString
-  published: boolean
-  image: string
-  authors: string[]
-  /** MDX file body */
-  body: MDX
-  slug: string
-  slugAsParams: string
 }  
 
 /** Nested types */
@@ -108,8 +77,8 @@ export type Post = {
 export type AllTypes = DocumentTypes | NestedTypes
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames
 
-export type DocumentTypes = Author | CheatSheets | Doc | Guide | Page | Post
-export type DocumentTypeNames = 'Author' | 'CheatSheets' | 'Doc' | 'Guide' | 'Page' | 'Post'
+export type DocumentTypes = Author | CheatSheets | Guide | Page
+export type DocumentTypeNames = 'Author' | 'CheatSheets' | 'Guide' | 'Page'
 
 export type NestedTypes = never
 export type NestedTypeNames = never
@@ -117,9 +86,7 @@ export type NestedTypeNames = never
 export type DataExports = {
   allDocuments: DocumentTypes[]
   allPages: Page[]
-  allDocs: Doc[]
   allGuides: Guide[]
-  allPosts: Post[]
   allAuthors: Author[]
   allCheatSheets: CheatSheets[]
 }
@@ -143,10 +110,8 @@ declare global {
 export type DocumentTypeMap = {
   Author: Author
   CheatSheets: CheatSheets
-  Doc: Doc
   Guide: Guide
   Page: Page
-  Post: Post
 }
 
 export type NestedTypeMap = {

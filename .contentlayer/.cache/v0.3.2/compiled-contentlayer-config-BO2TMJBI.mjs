@@ -14,25 +14,6 @@ var computedFields = {
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/")
   }
 };
-var Doc = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: `docs/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true
-    },
-    description: {
-      type: "string"
-    },
-    published: {
-      type: "boolean",
-      default: true
-    }
-  },
-  computedFields
-}));
 var Guide = defineDocumentType(() => ({
   name: "Guide",
   filePathPattern: `guides/**/*.mdx`,
@@ -90,42 +71,6 @@ var CheatSheets = defineDocumentType(() => ({
   },
   computedFields
 }));
-var Post = defineDocumentType(() => ({
-  name: "Post",
-  filePathPattern: `blog/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true
-    },
-    description: {
-      type: "string"
-    },
-    date: {
-      type: "date",
-      required: true
-    },
-    published: {
-      type: "boolean",
-      default: true
-    },
-    image: {
-      type: "string",
-      required: true
-    },
-    authors: {
-      // Reference types are not embedded.
-      // Until this is fixed, we can use a simple list.
-      // type: "reference",
-      // of: Author,
-      type: "list",
-      of: { type: "string" },
-      required: true
-    }
-  },
-  computedFields
-}));
 var Author = defineDocumentType(() => ({
   name: "Author",
   filePathPattern: `authors/**/*.mdx`,
@@ -166,7 +111,7 @@ var Page = defineDocumentType(() => ({
 }));
 var contentlayer_config_default = makeSource({
   contentDirPath: "./content",
-  documentTypes: [Page, Doc, Guide, Post, Author, CheatSheets],
+  documentTypes: [Page, Guide, Author, CheatSheets],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -203,10 +148,8 @@ var contentlayer_config_default = makeSource({
 export {
   Author,
   CheatSheets,
-  Doc,
   Guide,
   Page,
-  Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-YDNINCVF.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-BO2TMJBI.mjs.map

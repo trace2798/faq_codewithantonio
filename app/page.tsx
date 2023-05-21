@@ -49,7 +49,7 @@ export default function Home() {
           <Accordian />
         </div>
         <div>
-          <Guides/>
+          {/* <Guides/> */}
           <CheatSheets/>
         </div>
       </div>

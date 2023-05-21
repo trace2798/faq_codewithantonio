@@ -1,8 +1,8 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files"
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrettyCode from "rehype-pretty-code"
-import rehypeSlug from "rehype-slug"
-import remarkGfm from "remark-gfm"
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -14,27 +14,7 @@ const computedFields = {
     type: "string",
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
   },
-}
-
-export const Doc = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: `docs/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-    },
-    published: {
-      type: "boolean",
-      default: true,
-    },
-  },
-  computedFields,
-}))
+};
 
 export const Guide = defineDocumentType(() => ({
   name: "Guide",
@@ -65,7 +45,7 @@ export const Guide = defineDocumentType(() => ({
     },
   },
   computedFields,
-}))
+}));
 
 export const CheatSheets = defineDocumentType(() => ({
   name: "CheatSheets",
@@ -93,44 +73,7 @@ export const CheatSheets = defineDocumentType(() => ({
     },
   },
   computedFields,
-}))
-
-export const Post = defineDocumentType(() => ({
-  name: "Post",
-  filePathPattern: `blog/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-    },
-    date: {
-      type: "date",
-      required: true,
-    },
-    published: {
-      type: "boolean",
-      default: true,
-    },
-    image: {
-      type: "string",
-      required: true,
-    },
-    authors: {
-      // Reference types are not embedded.
-      // Until this is fixed, we can use a simple list.
-      // type: "reference",
-      // of: Author,
-      type: "list",
-      of: { type: "string" },
-      required: true,
-    },
-  },
-  computedFields,
-}))
+}));
 
 export const Author = defineDocumentType(() => ({
   name: "Author",
@@ -154,7 +97,7 @@ export const Author = defineDocumentType(() => ({
     },
   },
   computedFields,
-}))
+}));
 
 export const Page = defineDocumentType(() => ({
   name: "Page",
@@ -170,11 +113,11 @@ export const Page = defineDocumentType(() => ({
     },
   },
   computedFields,
-}))
+}));
 
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Page, Doc, Guide, Post, Author, CheatSheets],
+  documentTypes: [Page, Guide, Author, CheatSheets],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -187,14 +130,14 @@ export default makeSource({
             // Prevent lines from collapsing in `display: grid` mode, and allow empty
             // lines to be copy/pasted
             if (node.children.length === 0) {
-              node.children = [{ type: "text", value: " " }]
+              node.children = [{ type: "text", value: " " }];
             }
           },
           onVisitHighlightedLine(node) {
-            node.properties.className.push("line--highlighted")
+            node.properties.className.push("line--highlighted");
           },
           onVisitHighlightedWord(node) {
-            node.properties.className = ["word--highlighted"]
+            node.properties.className = ["word--highlighted"];
           },
         },
       ],
@@ -209,4 +152,4 @@ export default makeSource({
       ],
     ],
   },
-})
+});
