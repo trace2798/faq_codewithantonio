@@ -59,6 +59,9 @@ export const CheatSheets = defineDocumentType(() => ({
     description: {
       type: "string",
     },
+    by: {
+      type: "string",
+    },
     date: {
       type: "date",
       required: true,

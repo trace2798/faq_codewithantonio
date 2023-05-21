@@ -30,6 +30,7 @@ export type CheatSheets = {
   type: 'CheatSheets'
   title: string
   description?: string | undefined
+  by?: string | undefined
   date: IsoDateTimeString
   published: boolean
   featured: boolean

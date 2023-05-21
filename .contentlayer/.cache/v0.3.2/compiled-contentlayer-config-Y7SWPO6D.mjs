@@ -56,6 +56,9 @@ var CheatSheets = defineDocumentType(() => ({
     description: {
       type: "string"
     },
+    by: {
+      type: "string"
+    },
     date: {
       type: "date",
       required: true
@@ -152,4 +155,4 @@ export {
   Page,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-BO2TMJBI.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-Y7SWPO6D.mjs.map
