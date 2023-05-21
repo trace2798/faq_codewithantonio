@@ -19,7 +19,7 @@ export default function Guides() {
     });
 
   return (
-    <div className="py-6 lg:py-10 mx-[10vw]">
+    <div className="py-6 lg:py-10 lg:mx-[10vw]">
       <DocsPageHeader
         heading="Guides"
         text="This section includes end-to-end guides for developing Next.js 13 apps."

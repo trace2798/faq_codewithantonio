@@ -6,7 +6,7 @@ import Link from "next/link";
 import { DocsPageHeader } from "../components/page-header";
 
 export const metadata = {
-  title: "CheatSheets",
+  title: "Cheat Sheets",
   description:
     "This section contains some cheat sheets which will help you debug some common problems.",
 };
@@ -21,7 +21,7 @@ export default function CheatSheetsPage() {
   return (
     <div className="py-6 lg:py-10">
       <DocsPageHeader
-        heading="CheatSheets"
+        heading="Cheat Sheets"
         text="This section contains some cheat sheets which will help you debug some common problems."
       />
       {cheatSheets?.length ? (
