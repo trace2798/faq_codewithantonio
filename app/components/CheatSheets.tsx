@@ -42,14 +42,23 @@ export default function CheatSheets() {
                     {cheatSheet.title}
                   </h2>
                   {cheatSheet.description && (
-                    <p className="text-muted-foreground">{cheatSheet.description}</p>
+                    <p className="text-muted-foreground">
+                      {cheatSheet.description}
+                    </p>
                   )}
                 </div>
-                {cheatSheet.date && (
-                  <p className="text-sm text-muted-foreground">
-                    {formatDate(cheatSheet.date)}
-                  </p>
-                )}
+                <div className="flex justify-between">
+                  {cheatSheet.date && (
+                    <p className="text-sm text-muted-foreground">
+                      {formatDate(cheatSheet.date)}
+                    </p>
+                  )}
+                  {cheatSheet.by && (
+                    <p className="text-sm text-muted-foreground">
+                      By: {cheatSheet.by}
+                    </p>
+                  )}
+                </div>
               </div>
               <Link href={cheatSheet.slug} className="absolute inset-0">
                 <span className="sr-only">View</span>
