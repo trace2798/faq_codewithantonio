@@ -6,7 +6,7 @@ import Link from "next/link";
 import { DocsPageHeader } from "../components/page-header";
 
 export const metadata = {
-  title: "Guides",
+  title: "faq CWA - Guides",
   description:
     "This section includes end-to-end guides for developing Next.js 13 apps.",
 };
