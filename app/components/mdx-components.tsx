@@ -132,6 +132,7 @@ import * as React from "react";
 import { MdxCard } from "@/app/components/mdx-card";
 
 import { Callout } from "./callout";
+import { Pre } from "./mdx/Pre";
 
 const components = {
   h1: ({ className, ...props }: any) => (
@@ -262,24 +263,7 @@ const components = {
       {...props}
     />
   ),
-  pre: ({ className, ...props }: any) => (
-    <pre
-      className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4",
-        className
-      )}
-      {...props}
-    />
-  ),
-  code: ({ className, ...props }: any) => (
-    <code
-      className={cn(
-        "relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm",
-        className
-      )}
-      {...props}
-    />
-  ),
+  pre: Pre,
   Image,
   Callout,
   Card: MdxCard,
