@@ -9,3 +9,20 @@ Feel free to Fork and Clone this repo to play around.
 I you like it, I won't mind a star.
 
 Deployed on Vercel
+
+## Clone this repo
+
+```bash
+git clone https://github.com/trace2798/faq_codewithantonio.git
+```
+
+## Install Packages
+
+```bash
+npm i
+```
+
+## Start the app
+```bash
+npm run dev
+```
