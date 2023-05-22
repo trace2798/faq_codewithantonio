@@ -1,3 +1,8 @@
+This is the repo for Frequently asked questions [website](https://faq-codewithantonio.vercel.app/) based on CodewithAntonio's youtube videos.
+
+It has been created with the help with NextJs 13, tailwindcss and contentlayer.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
