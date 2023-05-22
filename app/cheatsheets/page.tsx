@@ -6,7 +6,7 @@ import Link from "next/link";
 import { DocsPageHeader } from "../components/page-header";
 
 export const metadata = {
-  title: "faq CWA - Cheat Sheets",
+  title: "Faq -CodewithAntonio -Cheat Sheets",
   description:
     "This section contains some cheat sheets which will help you debug some common problems.",
 };
