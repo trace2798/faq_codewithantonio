@@ -52,7 +52,9 @@ export default function GuidesPage() {
                     </p>
                   )}
                   {guide.by && (
-                    <p className="text-sm text-muted-foreground">By: {guide.by}</p>
+                    <p className="text-sm text-muted-foreground">
+                      By: {guide.by}
+                    </p>
                   )}
                 </div>
               </div>

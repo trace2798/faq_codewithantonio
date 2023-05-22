@@ -21,7 +21,9 @@ interface CheatSheetPageProps {
 
 async function getCheatSheetFromParams(params: any) {
   const slug = params?.slug?.join("/");
-  const cheatSheet = allCheatSheets.find((cheatSheet) => cheatSheet.slugAsParams === slug);
+  const cheatSheet = allCheatSheets.find(
+    (cheatSheet) => cheatSheet.slugAsParams === slug
+  );
 
   if (!cheatSheet) {
     null;
@@ -73,7 +75,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams(): Promise<
-CheatSheetPageProps["params"][]
+  CheatSheetPageProps["params"][]
 > {
   return allCheatSheets.map((cheatSheet) => ({
     slug: cheatSheet.slugAsParams.split("/"),
@@ -92,7 +94,10 @@ export default async function CheatSheetPage({ params }: CheatSheetPageProps) {
   return (
     <main className="relative py-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10 lg:py-10 xl:gap-20">
       <div>
-        <DocsPageHeader heading={cheatSheet.title} text={cheatSheet.description} />
+        <DocsPageHeader
+          heading={cheatSheet.title}
+          text={cheatSheet.description}
+        />
         <Mdx code={cheatSheet.body.code} />
         <hr className="my-4" />
         <div className="flex justify-center py-6 lg:py-10">
