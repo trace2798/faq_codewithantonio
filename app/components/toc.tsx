@@ -1,13 +1,12 @@
-"use client"
+"use client";
 
-import * as React from "react"
-
-import { TableOfContents } from "@/lib/toc"
-import { cn } from "@/lib/utils"
-import { useMounted } from "@/hooks/use-mounted"
+import { useMounted } from "@/hooks/use-mounted";
+import { TableOfContents } from "@/lib/toc";
+import { cn } from "@/lib/utils";
+import * as React from "react";
 
 interface TocProps {
-  toc: TableOfContents
+  toc: TableOfContents;
 }
 
 export function DashboardTableOfContents({ toc }: TocProps) {
@@ -21,12 +20,12 @@ export function DashboardTableOfContents({ toc }: TocProps) {
             .map((id) => id?.split("#")[1])
         : [],
     [toc]
-  )
-  const activeHeading = useActiveItem(itemIds)
-  const mounted = useMounted()
+  );
+  const activeHeading = useActiveItem(itemIds);
+  const mounted = useMounted();
 
   if (!toc?.items) {
-    return null
+    return null;
   }
 
   return mounted ? (
@@ -34,56 +33,56 @@ export function DashboardTableOfContents({ toc }: TocProps) {
       <p className="font-ranadeRegular">On This Page</p>
       <Tree tree={toc} activeItem={activeHeading} />
     </div>
-  ) : null
+  ) : null;
 }
 
 function useActiveItem(itemIds: (string | undefined)[]) {
-  const [activeId, setActiveId] = React.useState<string>("")
+  const [activeId, setActiveId] = React.useState<string>("");
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
+            setActiveId(entry.target.id);
           }
-        })
+        });
       },
       { rootMargin: `0% 0% -80% 0%` }
-    )
+    );
 
     itemIds?.forEach((id) => {
       if (!id) {
-        return
+        return;
       }
 
-      const element = document.getElementById(id)
+      const element = document.getElementById(id);
       if (element) {
-        observer.observe(element)
+        observer.observe(element);
       }
-    })
+    });
 
     return () => {
       itemIds?.forEach((id) => {
         if (!id) {
-          return
+          return;
         }
 
-        const element = document.getElementById(id)
+        const element = document.getElementById(id);
         if (element) {
-          observer.unobserve(element)
+          observer.unobserve(element);
         }
-      })
-    }
-  }, [itemIds])
+      });
+    };
+  }, [itemIds]);
 
-  return activeId
+  return activeId;
 }
 
 interface TreeProps {
-  tree: TableOfContents
-  level?: number
-  activeItem?: string | null
+  tree: TableOfContents;
+  level?: number;
+  activeItem?: string | null;
 }
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
@@ -107,8 +106,8 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               <Tree tree={item} level={level + 1} activeItem={activeItem} />
             ) : null}
           </li>
-        )
+        );
       })}
     </ul>
-  ) : null
+  ) : null;
 }

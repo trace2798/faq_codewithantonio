@@ -14,7 +14,7 @@ const satoshiBold = fetch(
 export async function GET(req: Request) {
   try {
     const fontRegular = await ranadeRegular;
-    const fontBold = await satoshiBold; 
+    const fontBold = await satoshiBold;
 
     const url = new URL(req.url);
     const values = ogImageSchema.parse(Object.fromEntries(url.searchParams));
@@ -38,7 +38,8 @@ export async function GET(req: Request) {
               mode === "dark"
                 ? "linear-gradient(90deg, #000 0%, #111 100%)"
                 : "white",
-          }}>
+          }}
+        >
           <svg width="212" height="50" viewBox="0 0 212 50" fill="none">
             <g clip-path="url(#a)" fill={paint}>
               <path d="M99.715 9.784h26.128v4.823h-10.365v25.37h-5.182v-25.37h-10.58V9.784ZM56.746 9.784v4.823H35.803v7.757h16.842v4.823H35.803v7.967h20.943v4.823H30.62v-25.37h-.002V9.784h26.128ZM69.792 9.797H63.01l24.292 30.192h6.801L81.956 24.903 94.084 9.82l-6.782.01-8.742 10.856-8.768-10.89ZM76.751 31.363l-3.396-4.222L62.99 40.012h6.802l6.96-8.649Z" />
@@ -92,7 +93,7 @@ export async function GET(req: Request) {
               tw="flex text-xl font-ranadeRegular"
               style={{ fontFamily: "Inter", fontWeight: "normal" }}
             >
-             faq-codewithantonio.vercel.app
+              faq-codewithantonio.vercel.app
             </div>
             <div
               tw="flex items-center text-xl"
@@ -114,7 +115,9 @@ export async function GET(req: Request) {
                   strokeLinejoin="round"
                 />
               </svg>
-              <div tw="flex ml-2 font-ranadeRegular">github.com/AntonioErdeljac</div>
+              <div tw="flex ml-2 font-ranadeRegular">
+                github.com/AntonioErdeljac
+              </div>
             </div>
           </div>
         </div>

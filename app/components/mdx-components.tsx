@@ -2,21 +2,16 @@
 // import { useMDXComponent } from "next-contentlayer/hooks";
 // import Image from "next/image";
 // import * as React from "react";
-
 // import { MdxCard } from "@/app/components/mdx-card";
-
 // import { Callout } from "./callout";
-
 // interface CodeProps {
 //   className: string;
 //   [key: string]: any;
 // }
-
 // const createHeadingComponent =
 //   (Tag: keyof JSX.IntrinsicElements, baseClassName: string) =>
 //   ({ className, ...props }: CodeProps) =>
 //     <Tag className={cn(baseClassName, className)} {...props} />;
-
 // const components = {
 //   h1: createHeadingComponent(
 //     "h1",
@@ -56,7 +51,6 @@
 //     "blockquote",
 //     "mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground"
 //   ),
-
 //   img: ({
 //     className,
 //     alt,
@@ -117,14 +111,11 @@
 //   Callout,
 //   Card: MdxCard,
 // };
-
 // interface MdxProps {
 //   code: string;
 // }
-
 // export function Mdx({ code }: MdxProps) {
 //   const Component: any = useMDXComponent(code);
-
 //   return (
 //     <div className="mdx">
 //       {/* HI THERE FROM THE OTHER SIDE! :D
@@ -133,7 +124,6 @@
 //     </div>
 //   );
 // }
-
 import { cn } from "@/lib/utils";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Image from "next/image";
@@ -200,13 +190,19 @@ const components = {
   ),
   a: ({ className, ...props }: any) => (
     <a
-      className={cn("font-ranadeItalic underline underline-offset-4", className)}
+      className={cn(
+        "font-ranadeItalic underline underline-offset-4",
+        className
+      )}
       {...props}
     />
   ),
   p: ({ className, ...props }: any) => (
     <p
-      className={cn("leading-7 [&:not(:first-child)]:mt-6 font-ranadeRegular", className)}
+      className={cn(
+        "leading-7 [&:not(:first-child)]:mt-6 font-ranadeRegular",
+        className
+      )}
       {...props}
     />
   ),
@@ -287,18 +283,18 @@ const components = {
   Image,
   Callout,
   Card: MdxCard,
-}
+};
 
 interface MdxProps {
-  code: string
+  code: string;
 }
 
 export function Mdx({ code }: MdxProps) {
-  const Component: any = useMDXComponent(code)
+  const Component: any = useMDXComponent(code);
 
   return (
     <div className="mdx">
       <Component components={components} />
     </div>
-  )
+  );
 }

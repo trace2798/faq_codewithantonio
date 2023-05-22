@@ -36,7 +36,7 @@ const AccordianItem: React.FC<AccordianItemProps> = ({
         </div>
       </div>
 
-      <Collapse  isOpened={open || false}>
+      <Collapse isOpened={open || false}>
         <div className="bg-white dark:bg-slate-700 rounded-xl dark:text-neutral-300 px-[50px] pb-[20px] mb-6 text-gray-500 sm:text-lg md:mb-8">
           <p className=" font-ranadeRegular pt-2">{description}</p>
           <p className="mt-2 font-ranadeRegular">{description2}</p>

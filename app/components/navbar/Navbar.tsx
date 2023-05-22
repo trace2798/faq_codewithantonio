@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { buttonVariants } from "../ui/Button";
 import SocialIcons from "../ui/SocialIcons";
 import { ThemeToggle } from "./ThemeToggle";

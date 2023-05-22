@@ -2,9 +2,9 @@ import { Inter } from "next/font/google";
 
 import ClientOnly from "./components/ClientOnly";
 import Providers from "./components/Providers";
+import Footer from "./components/footer";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
-import Footer from "./components/footer";
 
 // import { siteConfig } from "@/config/site";
 
@@ -75,7 +75,7 @@ export default function RootLayout({
             {/* @ts-expect-error Server Component */}
             <Navbar />
             <div className="pt-24 min-h-screen">{children}</div>
-            <Footer/>
+            <Footer />
           </Providers>
         </ClientOnly>
       </body>
