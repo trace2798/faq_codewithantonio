@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
@@ -212,66 +213,4 @@
        font-display: swap;
        font-style: italic;
 }
-
-
-/* ;DX - CopyButton */
-/* HIGHLIGHT GENERAL */
-.highlight {
-  position: relative;
-}
-
-/* COLLAPSE BUTTONS */
-.source-highlight-wrapper.source-show-compacted .source-expanded {
-  display: none;
-}
-
-.source-highlight-wrapper.source-show-compacted .source-compacted {
-  display: block;
-}
-
-.source-highlight-wrapper.source-show-expanded .source-compacted {
-  display: none;
-}
-
-.source-highlight-wrapper.source-show-expanded .source-expanded {
-  display: block;
-}
-
-.source-highlight-wrapper .source-show-more,
-.source-highlight-wrapper .source-show-less {
-  user-select: none;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 300;
-  cursor: pointer;
-  background-color: #6a6a6abb;
-  color: #fff;
-  padding: 7px 10px;
-  border-radius: 8px;
-  margin-bottom: 7px;
-  margin-right: 7px;
-}
-
-/* COPY BUTTON */
-.highlight .source-copy {
-  user-select: none;
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 300;
-  cursor: pointer;
-  background-color: #6a6a6abb;
-  color: #fff;
-  padding: 7px 10px;
-  border-radius: 8px;
-  margin-top: 7px;
-  margin-right: 7px;
-}
-
-.highlight:hover .source-copy {
-  display: inline;
-}
-
 
