@@ -264,6 +264,18 @@ const components = {
     />
   ),
   pre: Pre,
+  code: ({ className, ...props }: any) => {
+    //TODO: removed relative class, check if it breaks anything
+    return (
+      <code
+        className={cn(
+          "rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm",
+          className
+        )}
+        {...props}
+      />
+    );
+  },
   Image,
   Callout,
   Card: MdxCard,
