@@ -1,16 +1,27 @@
 ---
-title: Using Next-auth with Next.13
-description: How to use next-auth with Next 13 in server components.
-date: 2022-11-23
+title: Next-auth with NextJs 13.
+description: Step by Step guide for using next-auth with NextJs 13.
+date: 2023-05-22
+by: Trace
 ---
 
 <Callout>
 
-Since a lot of people are having problems with next-auth. I am creating this cheat sheet to cover the steps that needs to be taken for successful integration.
-Work in progress.
+The official website [next-auth](https://next-auth.js.org/) For this article in will go in brief and to the point. For more information check the official website.
 
 </Callout>
 
+<Callout>
+
+IMPORTANT: While writing this guide I am using "next-auth": "^4.22.1", "@next-auth/prisma-adapter": "^1.0.6", "@prisma/client": "^4.13.0", "bcrypt": "^5.1.0", "next": "13.4.1", "prisma": "^4.13.0", "axios": "^1.3.6", and "@types/bcrypt": "^5.0.0".
+
+</Callout>
+
+<Callout>
+
+IMPORTANT: This article is based on CodewithAntonio's [Messenger Clone video](https://www.youtube.com/watch?v=PGPGcKBpAk8&t=4874s). But it should work on any application where you are using NextJS, next-auth and Prisma.
+
+</Callout>
 
 ## What is next-auth?
 
@@ -28,43 +39,348 @@ Using next-auth in a NextJs 13 application with prisma. Since NextJs made the ap
 
 ## Getting Started
 
-1. Create a new Next.Js app using
+Before installing next-auth make sure you have your collection in the database. Once you have verified that it is out there you can follow the following steps.
 
-```html
-npx create-next-app@latest
-```
-
-2. Setup Prisma and connect it with MongoDb database.
-3. In your schema.prisma file define your User and Account schema
-   > Account schema is required if you plan to use social login.
-
-Example:
-
-```html
-// This is your Prisma schema file, // learn more about it in the docs:
-https://pris.ly/d/prisma-schema generator client { provider = "prisma-client-js"
-} datasource db { provider = "mongodb" url = env("DATABASE_URL") } model User {
-id String @id @default(auto()) @map("_id") @db.ObjectId name String? email
-String? @unique emailVerified DateTime? image String? hashedPassword String?
-createdAt DateTime @default(now()) updatedAt DateTime @updatedAt accounts
-Account[] } model Account { id String @id @default(auto()) @map("_id")
-@db.ObjectId userId String @db.ObjectId type String provider String
-providerAccountId String refresh_token String? @db.String access_token String?
-@db.String expires_at Int? token_type String? scope String? id_token String?
-@db.String session_state String? user User @relation(fields: [userId],
-references: [id], onDelete: Cascade) @@unique([provider, providerAccountId]) }
-```
-
-Push the schema to the database with the following command:
-
-```html
-npx prisma db push
-```
-
-Go and check your MongoDb database if the collections are there.
-
-After that run the following command:
+## Run the following command
 
 ```html
 npm install next-auth@latest @prisma/client @next-auth/prisma-adapter bcrypt
 ```
+
+Version specific command:
+
+```bash
+npm install next-auth@4.22.1 @prisma/client@4.13.0 @next-auth/prisma-adapter@1.0.6 bcrypt@5.0.0 axios@1.3.6
+```
+
+## Create prismadb.ts file inside libs folder
+
+Location: app/libs/prismadb.ts
+
+```ts
+import { PrismaClient } from "@prisma/client";
+
+declare global {
+  var prisma: PrismaClient | undefined;
+}
+
+const client = globalThis.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== "production") globalThis.prisma = client;
+
+export default client;
+```
+
+This code sets up a global prisma variable to hold an instance of PrismaClient.
+
+## Creating the API route
+
+> It is very important to name the following folder the way it is mention.
+
+Inside your app folder there should be a folder called api. Inside the api folder create a folder called auth inside it another folder called [...nextauth] inside that route.ts
+
+<Callout>Location: app/api/auth/[...nextauth]/route.ts</Callout>
+
+<Image src="/images/guides/route.jpg" width="250" height="250" alt="Image" />
+
+## Write the API route by following the video.
+
+<Callout>
+
+Make sure you pass the object "authOptions" not the type AuthOptions.
+
+```ts
+const handler = NextAuth(authOptions);
+```
+
+</Callout>
+
+## Setting up the Environment variables
+
+Go to your .env file write the following
+
+```.env
+NEXTAUTH_SECRET=
+GITHUB_ID=
+GITHUB_SECRET=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+While writing the route above, if you changed the name of the environment variable write that.
+
+> Double check for typo, it is a very common problem.
+
+## Setting the value for NEXTAUTH_SECRET
+
+For NEXTAUTH_SECRET you can put any string.
+
+## Creating register API and functionality
+
+### Register API: Go back to api folder. Inside the api folder create another folder called register inside that route.ts
+
+<Callout>Location: app/api/register/route.ts</Callout>
+
+> Common Mistake: register folder is not inside auth folder.
+
+<Image src="/images/guides/register.jpg" width="300" height="300" alt="Image" />
+
+Follow the video and write the register api.
+
+### Functionality: Then go back to AuthForm and makes a POST request to the "/api/register" endpoint using the axios library inside the onSubmit handler.
+
+For the code, follow the video or check Antonio's repo.
+
+> Verification: Go to your auth form in the browser and register a new user. If everything is working properly a new user should be created in your database.
+
+<Image
+  src="/images/guides/verification.jpg"
+  width="300"
+  height="300"
+  alt="Image"
+/>
+
+## Creating Login functionality
+
+For login we have to call signIn function from next-auth. Also to log-in we have the option to use credentials or Social log-in i.e. Google and Github.
+
+We have 3 providers to choose from (Credentials, Google and Github) since we wrote all the 3 in your [...nextauth]/route.ts
+
+### <ins>Login with Credentials</ins>
+
+Follow the video for the code.
+
+We call the signIn function from next-auth inside the onSubmit handler. We pass 2 argument to the signIn function. First is the authentication method, which in this case is "credentials" and the second argument is an object that spreads the properties of the data object.
+
+## Social Login with Github
+
+### <ins>Github Environment Variables</ins>
+
+Before continuing with social login we will need to have the secret keys. For github
+
+Go to your github account --> settings --> Developer settings --> Oauth Apps
+
+Then create a new app by clicking on "New OAuth App"
+
+A should see an application form. On "Homepage URL" and "Authorization callback URL" field put http://localhost:3000/
+
+> I are using http://localhost:3000/ since that's where my server is running.
+
+<Image
+  src="/images/guides/githubregister.jpg"
+  width="700"
+  height="700"
+  alt="Image"
+/>
+
+<Callout>
+  Make sure it is "http" in the both url. Using "https" might cause errors.
+</Callout>
+
+Click on "Register application".
+
+### GITHUB_ID
+
+Now you should see the Client Id, copy that code and put it in your .env file. This is the value for "GITHUB_ID".
+
+### GITHUB_SECRET
+
+Below the Client ID there is a button called "Generate a new client secret". Click on it, a key should generate. Copy the code and paste it as the value for GITHUB_SECRET.
+
+<Image
+  src="/images/guides/githubsecret.jpg"
+  width="700"
+  height="700"
+  alt="Image"
+/>
+
+### Functionality for Github Login.
+
+Follow the video and write the code for socialAction. Video: [1:49:30]((https://www.youtube.com/watch?v=PGPGcKBpAk8&t=4874s))
+
+### Verification for Github Login functionality
+
+Try to login by clicking on the github button. Then go to your database --> Account Collection and you should see the github account you tried to login with.
+
+<Callout>
+
+Common Problem: Your github account might only be in Account collection and not in User Collection.
+
+Expected Outcome: Once you Login with Github, account information should be in both Account and User collection.
+
+Solution: To solve this problem, delete all the accounts from User and Account collection. Then try to login with Github again. If it is successful you should see the account information in both Account and User.
+
+</Callout>
+
+Once you get the expected outcome, you should be done with this part. If you have more questions ask in the discord.
+
+## Social Login with Google
+
+### <ins>Google Environment Variables</ins>
+
+Before continuing with Google login we will need to have the secret keys. For google
+
+1. Go to your [google cloud console](https://console.cloud.google.com/) --> Create a new project --> Name the project and click Create.
+
+Your project should be created and a Dashboard should appear.
+
+2. Click on APIs & Services
+
+<Image src="/images/guides/google2.jpg" width="700" height="700" alt="Image" />
+
+3. We need to set up the 'OAuth Consent screen". So click on OAuth concent screen which should be visible on the left side of the screen. Then choose External and click on the Create button.
+
+A registration from should appear. Provide your desired name for the application and developer's email.
+
+Then click on Save and continue. It is a 4 step registration process, you can leave the rest of the steps exactly like the way it is and just keep on clicking "Save and Continue"
+
+Then Click on "Credential" (left side of screen) --> "+ CREATE CREDENTIALS" --> "OAuth-client ID" --> Application Type: Web Application --> Add Authorized redirect URIs i.e. http://localhost:3000/api/auth/callback/google --> Create
+
+<Callout>
+  Make sure it is "http" in the both url. Using "https" might cause errors.
+</Callout>
+
+<Image
+  src="/images/guides/googlestep.jpg"
+  width="700"
+  height="700"
+  alt="Image"
+/>
+
+<Callout>
+  Steps Guide: 
+1. [google cloud console](https://console.cloud.google.com/)
+
+2. Create a new project
+
+3. Name the project and click Create
+
+4. APIs & Services (should be visible on dashboard or search for it on search bar)
+
+5. OAuth concent screen (Left sign of the screen)
+
+6. Choose External
+
+7. "Create" button
+
+8. (Fill the registration form) --> (After finishing the form)
+
+9. "Credential" (left side of screen)
+
+10. "+ CREATE CREDENTIALS"
+
+11. "OAuth-client ID"
+
+12. Application Type: Web Application
+
+13. Add Authorized redirect URIs i.e. http://localhost:3000/api/auth/callback/google
+
+14. Create
+
+</Callout>
+
+4. A modal should appear with Client ID and Client Secret. Add those value to your .env file.
+
+<Image
+  src="/images/guides/googlemodal.jpg"
+  width="700"
+  height="700"
+  alt="Image"
+/>
+
+### GOOGLE_CLIENT_ID
+
+On the modal you should see the "Client ID", copy that code and put it in your .env file. This is the value for "GOOGLE_CLIENT_ID".
+
+### GOOGLE_CLIENT_SECRET
+
+Below the Client ID you should see "Client secret" there is a button called "Generate a new client secret". Copy the code and paste it as the value for "GOOGLE_CLIENT_SECRET".
+
+### Functionality for Google Login.
+
+If everything has been correctly done it should be working.
+
+> Before trying to log-in with your google account make sure that you delete all the user and account from database.
+
+### Verification for Google Login functionality
+
+Try to login by clicking on the google button. Then go to your database --> Account Collection and you should see the google account you tried to login with.
+
+<Callout>
+
+Common Problem: Your google account might only be in Account collection and not in User Collection.
+
+Expected Outcome: Once you Login with Google, account information should be in both Account and User collection.
+
+Solution: To solve this problem, delete all the accounts from User and Account collection. Then try to login with Google again. If it is successful you should see the account information in both Account and User.
+
+</Callout>
+
+Once you get the expected outcome, you should be done with this part. If you have more questions ask in the discord.
+
+> By following the instructions mentioned above authentication with next-auth with credentials and social login should be working in your local development.
+
+## Social Login on Deployed Site
+
+After your deploy your website, the social login functionality might not be working.
+
+### Github Login on Deployed Site
+
+Go back to your github account --> Settings --> Developer Settings --> OAuth App --> Choose the app --> (Application Form should show up) --> Change Homepage URL and Authorization callback URL to your deployed Url --> Click on "Update Application"
+
+### Google Login on Deployed Site
+
+Go to your google cloud platform --> APIs & Services --> Credentials --> Web Client 1 (or the name you choose).
+
+<Image
+  src="/images/guides/googledeploy.jpg"
+  width="700"
+  height="700"
+  alt="Image"
+/>
+
+A form should appear where previously we added the Authorized redirect URI, we will need to change that URI from http://localhost:3000 to out deployed website url.
+
+<Callout>
+
+Before: http://localhost:3000/api/auth/callback/google
+
+After: https://YOUR_DOMAIN_URL/api/auth/callback/google
+
+</Callout>
+
+<Callout>
+
+Common Problem: Make sure there is no double // before api. The problem might occur when you copy and paste your domain url.
+
+Video: [8:48:00](https://www.youtube.com/watch?v=PGPGcKBpAk8&t=4874s)
+
+</Callout>
+
+Then add your domain url on "Authorized JavaScript origins", previously we did not add anything out there.
+
+<Callout>
+
+Important Note: While pasting your domain Url on Authorized JavaScript origins, make sure you remove the last '/'
+
+Expected: https://YOUR_DOMAIN_URL
+
+> WRONG: https://YOUR_DOMAIN_URL/
+
+</Callout>
+
+Then click on the "Save" button and you should be done.
+
+<Callout>
+
+Important Note: This google update might take some time.
+
+When I did this it took around 2hr to update.
+
+Just above the "Save Button" Google do have a note which states "Note: It may take 5 minutes to a few hours for settings to take effect"
+
+</Callout>
+
+I hope this article helped you.
+
+Happy Hacking...
