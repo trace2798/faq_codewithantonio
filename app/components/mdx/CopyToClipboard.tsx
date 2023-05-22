@@ -46,7 +46,7 @@ export const CopyToClipboard: React.FC<ICopyToClipboard> = ({ children }) => {
             {
               "border-green-400 focus:border-green-400 focus:outline-none":
                 copied,
-              "hover:border-gray-300": !copied,
+              "hover:border-gray-300 border-slate-500": !copied,
             }
           )}
           onClick={onCopy}
@@ -56,7 +56,7 @@ export const CopyToClipboard: React.FC<ICopyToClipboard> = ({ children }) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             fill="none"
-            className={copied ? "text-green-400" : "text-gray-300"}
+            className={copied ? "text-green-400" : "text-slate-500 hover:text-gray-300"}
           >
             {copied ? (
               <>
