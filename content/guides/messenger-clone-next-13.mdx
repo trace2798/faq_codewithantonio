@@ -106,7 +106,11 @@ Error: failed to process failed to invoke plugin.
 
 This plugin is not working with the latest version of NextJs. Quick fix is to use the same version of NextJS/dependencies that has been used in the video.
 
-## Pusher Related Error
+## Pusher Related Error and information
+
+For checking the active status we use pusher api, but the pusher api does not support the app directory. So we need to create pages folder.
+
+> Location: pages/api/pusher/auth.ts
 
 ### Error: PusherRequestError
 
