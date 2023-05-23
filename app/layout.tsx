@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import Script from "next/script";
 
 import ClientOnly from "./components/ClientOnly";
 import Providers from "./components/Providers";
@@ -69,6 +70,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Script
+        id="google-analytics"
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}`}
+      />
+
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}, {
+        page_path: window.location.pathname,
+      });
+  `}
+      </Script>
       <body className={inter.className}>
         <ClientOnly>
           <Providers>
