@@ -33,7 +33,7 @@ export default function RootLayout({
       <Script
         id="google-analytics"
         strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}`}
+        src="https://www.googletagmanager.com/gtag/js?id=G-9KSNSZ09Z9"
       />
 
       <Script id="google-analytics" strategy="lazyOnload">
@@ -41,7 +41,7 @@ export default function RootLayout({
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}, {
+      gtag('config', 'G-9KSNSZ09Z9', {
         page_path: window.location.pathname,
       });
   `}
