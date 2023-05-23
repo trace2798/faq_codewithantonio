@@ -12,5 +12,6 @@ export const env = createEnv({
   },
   runtimeEnv: {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE,
   },
 });

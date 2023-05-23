@@ -7,8 +7,6 @@ import Footer from "./components/footer";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
 
-// import { siteConfig } from "@/config/site";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -33,7 +31,7 @@ export default function RootLayout({
       <Script
         id="google-analytics"
         strategy="lazyOnload"
-        src="https://www.googletagmanager.com/gtag/js?id=G-9KSNSZ09Z9"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}`}
       />
 
       <Script id="google-analytics" strategy="lazyOnload">
@@ -41,7 +39,7 @@ export default function RootLayout({
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-9KSNSZ09Z9', {
+      gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}, {
         page_path: window.location.pathname,
       });
   `}
