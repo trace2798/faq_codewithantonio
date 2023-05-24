@@ -4,6 +4,7 @@ import { absoluteUrl, cn } from "@/lib/utils";
 import "@/styles/mdx.css";
 import { allGuides } from "contentlayer/generated";
 import { Metadata } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -88,28 +89,39 @@ export default async function GuidePage({ params }: GuidePageProps) {
   }
 
   const toc = await getTableOfContents(guide.body.raw);
+  const url = env.NEXT_PUBLIC_APP_URL;
+
+  const ogUrl = new URL(`${url}/api/og`);
 
   return (
-    <main className="relative py-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10 lg:py-10 xl:gap-20">
-      <div>
-        <DocsPageHeader heading={guide.title} text={guide.description} />
-        <Mdx code={guide.body.code} />
-        <hr className="my-4" />
-        <div className="flex justify-center py-6 lg:py-10">
-          <Link
-            href="/guides"
-            className={cn(buttonVariants({ variant: "ghost" }))}
-          >
-            <Icons.chevronLeft className="mr-2 h-4 w-4" />
-            See all guides
-          </Link>
+    <>
+      <Head>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={guide.title} />
+        <meta name="twitter:description" content={guide.description} />
+        <meta name="twitter:image" content={ogUrl.toString()} />
+      </Head>
+      <main className="relative py-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10 lg:py-10 xl:gap-20">
+        <div>
+          <DocsPageHeader heading={guide.title} text={guide.description} />
+          <Mdx code={guide.body.code} />
+          <hr className="my-4" />
+          <div className="flex justify-center py-6 lg:py-10">
+            <Link
+              href="/guides"
+              className={cn(buttonVariants({ variant: "ghost" }))}
+            >
+              <Icons.chevronLeft className="mr-2 h-4 w-4" />
+              See all guides
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className="hidden text-sm lg:block">
-        <div className="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-10">
-          <DashboardTableOfContents toc={toc} />
+        <div className="hidden text-sm lg:block">
+          <div className="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-10">
+            <DashboardTableOfContents toc={toc} />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
