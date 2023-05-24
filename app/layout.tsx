@@ -40,6 +40,7 @@ export const metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
+  manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
 export default function RootLayout({
@@ -49,22 +50,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script
-        id="google-analytics"
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}`}
-      />
-
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}, {
-        page_path: window.location.pathname,
-      });
-  `}
-      </Script>
+      <head>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Tisonthemove247" />
+        <meta name="twitter:title" content={siteConfig.name} />
+        <meta name="twitter:description" content={siteConfig.description} />
+        <meta
+          name="twitter:image"
+          content="https://faq-codewithantonio.vercel.app/og.jpg"
+        />
+      </head>
       <body className={inter.className}>
         <ClientOnly>
           <Providers>
@@ -74,6 +69,22 @@ export default function RootLayout({
             <Footer />
           </Providers>
         </ClientOnly>
+        <Script
+          id="google-analytics"
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}`}
+        />
+
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CODE}, {
+        page_path: window.location.pathname,
+      });
+  `}
+        </Script>
       </body>
     </html>
   );
