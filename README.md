@@ -1,8 +1,8 @@
-# Faq_codewithantonio
+# faq_codewithantonio
 
 This is the repo for Frequently asked questions [website](https://faq-codewithantonio.vercel.app/) based on CodewithAntonio's youtube videos.
 
-It has been created with the help with NextJs 13, tailwindcss and contentlayer.
+The website has been created with the help with NextJs 13, tailwindcss and contentlayer.
 
 The font used in this project are Satoshi and Ranade from [Fontshare](https://www.fontshare.com/)
 
