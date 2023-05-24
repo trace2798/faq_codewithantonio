@@ -8,7 +8,24 @@ import { DocsPageHeader } from "../components/page-header";
 export const metadata = {
   title: "Faq -CodewithAntonio -Guides",
   description:
-    "This section includes end-to-end guides for developing Next.js 13 apps.",
+    "This section includes end-to-end guides based on uploaded youtube tutorials for developing Next.js 13 apps.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://faq-codewithantonio.vercel.app/guides",
+    title: "Faq -CodewithAntonio -Guides",
+    description:
+      "This section includes end-to-end guides based on uploaded youtube tutorials for developing Next.js 13 apps.",
+    siteName: "Faq -CodewithAntonio -Guides",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Faq -CodewithAntonio -Guides",
+    description:
+      "This section includes end-to-end guides based on uploaded youtube tutorials for developing Next.js 13 apps.",
+    images: "https://faq-codewithantonio.vercel.app/guide.jpg",
+    creator: "@Trace",
+  },
 };
 
 export default function GuidesPage() {
