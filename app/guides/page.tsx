@@ -13,10 +13,10 @@ export const metadata = {
     type: "website",
     locale: "en_US",
     url: "https://faq-codewithantonio.vercel.app/guides",
-    title: "Faq -CodewithAntonio -Guides",
+    title: "Faq - CodewithAntonio - Guides",
     description:
       "This section includes end-to-end guides based on uploaded youtube tutorials for developing Next.js 13 apps.",
-    siteName: "Faq -CodewithAntonio -Guides",
+    siteName: "Faq - CodewithAntonio - Guides",
   },
   twitter: {
     card: "summary_large_image",
@@ -24,7 +24,7 @@ export const metadata = {
     description:
       "This section includes end-to-end guides based on uploaded youtube tutorials for developing Next.js 13 apps.",
     images: "https://faq-codewithantonio.vercel.app/guide.jpg",
-    creator: "@Trace",
+    creator: "@Tisonthemove247",
   },
 };
 

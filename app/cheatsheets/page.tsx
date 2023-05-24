@@ -6,9 +6,26 @@ import Link from "next/link";
 import { DocsPageHeader } from "../components/page-header";
 
 export const metadata = {
-  title: "Faq -CodewithAntonio -Cheat Sheets",
+  title: "Faq - CodewithAntonio - Cheat Sheets",
   description:
     "This section contains some cheat sheets which will help you debug some common problems.",
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: "https://faq-codewithantonio.vercel.app/cheatsheets",
+      title: "Faq - CodewithAntonio - Cheat Sheets",
+      description:
+      "This section contains some cheat sheets which will help you debug some common problems.",
+      siteName: "Faq - CodewithAntonio - Cheat Sheets",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Faq - CodewithAntonio - Cheat Sheets",
+      description:
+      "This section contains some cheat sheets which will help you debug some common problems.",
+      images: "https://faq-codewithantonio.vercel.app/cheatsheet.jpg",
+      creator: "@Tisonthemove247",
+    },
 };
 
 export default function CheatSheetsPage() {

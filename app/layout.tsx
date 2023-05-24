@@ -19,6 +19,7 @@ export const metadata = {
     "Tailwind CSS",
     "CodewithAntonio",
     "Next.js tutorials",
+    "Youtube",
   ],
   openGraph: {
     type: "website",
@@ -50,19 +51,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <head>
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@Tisonthemove247" />
-        <meta name="twitter:title" content={siteConfig.name} />
-        <meta
-          name="twitter:description"
-          content="Frequently asked questions based on Codewithantonio's youtube videos."
-        />
-        <meta
-          name="twitter:image"
-          content="https://faq-codewithantonio.vercel.app/og.jpg"
-        />
-      </head> */}
       <body className={inter.className}>
         <ClientOnly>
           <Providers>
