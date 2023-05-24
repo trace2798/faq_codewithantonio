@@ -50,7 +50,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+      {/* <head>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@Tisonthemove247" />
         <meta name="twitter:title" content={siteConfig.name} />
@@ -62,7 +62,7 @@ export default function RootLayout({
           name="twitter:image"
           content="https://faq-codewithantonio.vercel.app/og.jpg"
         />
-      </head>
+      </head> */}
       <body className={inter.className}>
         <ClientOnly>
           <Providers>
