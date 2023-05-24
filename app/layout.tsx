@@ -54,7 +54,10 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@Tisonthemove247" />
         <meta name="twitter:title" content={siteConfig.name} />
-        <meta name="twitter:description" content={siteConfig.description} />
+        <meta
+          name="twitter:description"
+          content="Frequently asked questions based on Codewithantonio's youtube videos."
+        />
         <meta
           name="twitter:image"
           content="https://faq-codewithantonio.vercel.app/og.jpg"
