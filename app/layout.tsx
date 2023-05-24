@@ -6,6 +6,7 @@ import Providers from "./components/Providers";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
+import { siteConfig } from "@/config/site";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,21 @@ export const metadata = {
     "CodewithAntonio",
     "Next.js tutorials",
   ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/og.jpg`],
+    creator: "@Trace",
+  },
 };
 
 export default function RootLayout({
