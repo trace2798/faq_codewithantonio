@@ -71,6 +71,7 @@ export async function generateMetadata({
       description: cheatSheet.description,
       images: [ogUrl.toString()],
     },
+    
   };
 }
 
