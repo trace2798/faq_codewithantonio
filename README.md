@@ -12,6 +12,8 @@ I you like it, I won't mind a star.
 
 Deployed on Vercel
 
+Special Thanks to [shadcn](https://github.com/shadcn) for his [taxonomy](https://github.com/shadcn/taxonomy) repo.
+
 ## Clone this repo
 
 ```bash
