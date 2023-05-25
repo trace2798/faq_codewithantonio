@@ -1,6 +1,6 @@
 # faq_codewithantonio
 
-This is the repo for Frequently asked questions [website](https://faq-codewithantonio.vercel.app/) based on CodewithAntonio's youtube videos.
+This is the repo for Frequently asked questions [website](https://faq-codewithantonio.vercel.app/) based on [CodewithAntonio's](https://github.com/AntonioErdeljac) [youtube](https://www.youtube.com/@codewithantonio) videos.
 
 The website has been created with the help with NextJs 13, tailwindcss and contentlayer.
 
