@@ -7,7 +7,7 @@ export const accordianData = [
   },
   {
     title: "Build fail",
-    description: `Go to your package,json and then add "postinstall": "prisma generate" to your scripts.`,
+    description: `Go to your package,json and then add "postbuild": "prisma generate" to your scripts.`,
     description2: `Previously it was not required.`,
   },
   {
